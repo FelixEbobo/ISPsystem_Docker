@@ -1,11 +1,10 @@
-import pymysql, uuid
+import pymysql
 from random import randint
-import shlex
 
 connection_params = {
     "user": "root",
     "password": "123456",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 3122,
 }
 
