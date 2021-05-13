@@ -7,4 +7,4 @@ COPY index.html /index.html
 
 RUN apt install -y git
 
-CMD [ "/usr/bin/python3",  "app.py", "1829"]
+CMD [ "python3",  "app.py", "1829"]

@@ -1,16 +1,11 @@
-# Chapter 3
+# Chapter 3 - создание образов контейнеров из Dockerfile
 
 ### Python server - пример маленького сервера, который запускается в контейнере
 
 #### `docker build -t python_server .` - собрать образ из Dockerfile в текущей директории с именем *python_server*
 
-### MySQL - пример использования MySQL сервера внутри контейнера
-
-#### `docker run --rm -p 3122:3306 --name database -e MYSQL_ROOT_PASSWORD=123456 -d mysql` Запускаем докер контейнер с образом mysql, при этом мы передаём следующие ключи:
+### `docker run --rm -dt -p <port-outside-container.>:<port-in-container> python_server` - запустить контейнер в фоновом режиме из образа *python_server*  
+ключи:
+- -dt - запустить контейнер в фоновом режиме
 - --rm после остановки конейнер сразу же удалится
-- --p <port-outside-container.>:<port-in-container> позволяет прокинуть порт наружу, привязывая <port-outside-container> к <port-in-container>, что позволяет привязывать некоторые маленькие порты, допустим, к 8080 порту хоста привязать порт 80 контейнера.
-- --name <container-name> задаём имя контейнеру
-- -e позволяет указать переменные окружения внутри Docker контейнера, в нашем случае мы задаём пароль рута
-
-#### `docker run --rm -v <path-on-host-machine>:<path-inside-container> -p 3122:3306 --name database -e MYSQL_ROOT_PASSWORD=123456 -d mysql` - так же самая команда, за исключением одного ключа:
-- -v позволяет привязывать внутреннюю директорию контейнера к директории, расположенной на машине хоста
+- --p <port-outside-container.>:<port-in-container> позволяет прокинуть порт наружу, привязывая <port-outside-container> к <port-in-container>, что позволяет 

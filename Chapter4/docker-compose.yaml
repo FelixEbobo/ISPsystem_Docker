@@ -1,15 +1,16 @@
-
 services:
   mysql:
     image: mysql:5.5
     container_name: database
     environment: 
       - MYSQL_DATABASE=isp
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=123456
     volumes: 
       - mysql-dump:/var/lib/mysql
-    ports: 
-      - "3123:3306"
+    networks:
+      - isp_bridge
+    restart: always
 
   web_app:
     build:
@@ -17,6 +18,9 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - mysql
+    networks:
+      - isp_bridge
+    restart: always
 
   nginx:
     build: 
@@ -27,6 +31,12 @@ services:
       - web_app
     ports: 
       - "80:80"
+    networks:
+      - isp_bridge
+    restart: always
+
+networks:
+  isp_bridge:
 
 volumes: 
   mysql-dump:
