@@ -22,4 +22,4 @@
 
 ### `docker rm $(docker ps -a -q -f status=exited)` - удалит все контейнеры с флагов "закончил работу"
 
-### `docker rmi` - удалит ненужные образы
+### `docker rmi <image name>/<image id>` - позволяет удалять образы
